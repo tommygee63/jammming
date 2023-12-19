@@ -1,17 +1,12 @@
 import React from 'react';
+import Track from '../Track/Track';
 
 function Tracklist(props) {
 
-    const tracks = props.tracks
-
     return (
         <>
-        {tracks.map((track) => {
-            return <div key={track.id}>
-              <p style={{display:'inline'}}>{track.name}, {track.artist} </p><span> <button>+</button></span>
-            </div>
-          })};
-          </>
+        {props.tracks.map((track) => <Track track={track}/>)};
+        </>
     );    
 };
 

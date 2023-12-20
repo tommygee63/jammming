@@ -18,6 +18,8 @@ function Playlist(props) {
             <input className={styles.input} onChange={handleChange} value={playlistTitle} />
 
             <Tracklist tracks={tracks} removeFromPlaylist={props.removeFromPlaylist}/>
+
+            <button className={styles.button}>Save to Spotify</button>
         </div>
     )
 }

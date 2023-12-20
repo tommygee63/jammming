@@ -9,7 +9,6 @@ function App() {
 
   const [tracks, setTracks] = useState([]);
   const [playlist, setPlaylist] = useState([])
-  console.log(playlist)
 
   return (
     <div>

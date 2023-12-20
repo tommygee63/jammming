@@ -32,3 +32,20 @@ h2 {
 .input:focus {
     outline: none;
 }
+
+.button {
+    font-family: Rubik;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 20px;
+}
+.button:hover {
+    cursor: pointer;
+}
+.button:active {
+    background-color: black;
+    color: white;
+}

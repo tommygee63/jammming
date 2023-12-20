@@ -5,7 +5,7 @@ function Tracklist(props) {
 
     return (
         <>
-        {props.tracks.map((track) => <Track track={track}/>)};
+        {props.tracks.map((track) => <Track track={track} key={track.id} addToPlaylist={props.addToPlaylist} removeFromPlaylist={props.removeFromPlaylist}/>)};
         </>
     );    
 };

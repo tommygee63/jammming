@@ -1,0 +1,34 @@
+.div {
+    background-color: rgb(26, 26, 26);
+    min-height: 500px;
+    width: 49%;
+    border-radius: 20px;
+    margin-top: 5px;
+    text-align: center;
+}
+
+h2 {
+    color: white;
+    font-family: Rubik;
+    font-size: 2rem;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.input {
+    width: 90%;
+    border: 0;
+    border-bottom: 2px solid white;
+    font-family: Rubik;
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: rgb(26, 26, 26);
+    color: white;
+    margin-top: 26.560px;
+    margin-bottom: 24.560px;
+    padding: 0;
+    padding-top: 10px;
+}
+.input:focus {
+    outline: none;
+}

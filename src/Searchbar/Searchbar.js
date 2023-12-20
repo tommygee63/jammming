@@ -1,6 +1,7 @@
 import React from 'react';
 import trackData from '../data';
 import {useState} from 'react';
+import styles from './Serachbar.module.css';
 
 function Searchbar(props) {
 
@@ -21,15 +22,16 @@ function Searchbar(props) {
     };
 
     return (
-        <div>
+        <div className={styles.div}>
             <form onSubmit={HandleSubmit}>
             <input 
+            className={styles.input}
             type='text'
             placeholder='Enter track to search...' 
             value={search}
             onChange={HandleChange}/>
-
-            <input type='submit' value='Search'/>
+            <br/><br/>
+            <input className={styles.submit} type='submit' value='Search'/>
             </form>
         </div>
     )

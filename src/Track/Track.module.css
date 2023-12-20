@@ -1,0 +1,33 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 5px 40px;
+    border-bottom: 2px solid white;
+}
+
+.track {
+    font-family: Rubik;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.artist {
+    font-family: Rubik;
+    color: white;
+}
+
+.button button {
+    font-family: Rubik;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 5px;
+}
+.button button:hover {
+    cursor: pointer;
+}
+.button button:active {
+    color: white;
+    background-color: black;
+}

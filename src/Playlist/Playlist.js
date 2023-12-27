@@ -5,21 +5,30 @@ import {useState} from 'react';
 
 function Playlist(props) {
 
-    const tracks = props.tracks;
-
-    const [playlistTitle, setPlaylistTitle] = useState('')
+    const [playlistTitle, setPlaylistTitle] = useState('');
+    const [uris, setUris] = useState([]);
 
     function handleChange(e) {
         setPlaylistTitle(e.target.value);
+    };
+
+    function handleClick(e) {
+        props.tracks.forEach(track => {
+            setUris((prev) => {
+                return [...prev, track.id]
+            })
+        })
+        props.setPlaylist([])
+        setPlaylistTitle('')
     };
 
     return (
         <div className={styles.div}>
             <input className={styles.input} onChange={handleChange} value={playlistTitle} />
 
-            <Tracklist tracks={tracks} removeFromPlaylist={props.removeFromPlaylist}/>
+            <Tracklist tracks={props.tracks} removeFromPlaylist={props.removeFromPlaylist}/>
 
-            <button className={styles.button}>Save to Spotify</button>
+            <button className={styles.button} onClick={handleClick}>Save to Spotify</button>
         </div>
     )
 }

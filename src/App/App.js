@@ -16,7 +16,7 @@ function App() {
     <Searchbar setTracks={setTracks}/>
     <div className='container'>
     <Searchresults tracks={tracks} addToPlaylist={setPlaylist}/>
-    <Playlist tracks={playlist} removeFromPlaylist={setPlaylist}/>
+    <Playlist tracks={playlist} setPlaylist={setPlaylist} removeFromPlaylist={setPlaylist}/>
     </div>
     </div>
   );

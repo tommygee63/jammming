@@ -7,11 +7,12 @@ import Playlist from '../Playlist/Playlist';
 
 function App() {
 
+  const [search, setSearch] = useState('')
   const [tracks, setTracks] = useState([]);
   const [playlist, setPlaylist] = useState([])
   const [accessToken, setAccessToken] = useState('')
 
-  //saves acces token
+  //saves access token
   function saveAccessToken(token) {
       setAccessToken (token);
       setTimeout(() => {
@@ -59,6 +60,34 @@ function App() {
   }
 
   //console.log(accessToken)
+  // gets and displays tracks
+  async function getTracks() {
+    try {
+      await fetch(`https://api.spotify.com/v1/search?q=${search}&type=track`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      }).then((response) => {
+        return response.json()
+      }).then((jsonResponse) => {
+        //console.log(jsonResponse)
+        setTracks([])
+        jsonResponse.tracks.items.map((track) => {
+          setTracks((prev) => {
+            return [...prev, {
+              name: track.name,
+              artist: track.artists[0].name,
+              album: track.album.name,
+              id: track.id,
+              uri: track.uri
+            }]
+          })
+        })
+      })
+    } catch(e) {
+      console.log(e.message)
+    }
+  }
 
   return (
     <div>
@@ -66,7 +95,7 @@ function App() {
     <div className='logInButton'>
       {!accessToken && <button onClick={handleClick}>LogIn</button> || <p>Spotify connected</p>}
     </div>
-    <Searchbar setTracks={setTracks}/>
+    <Searchbar setSearch={setSearch} getTracks={getTracks}/>
     <div className='container'>
     <Searchresults tracks={tracks} addToPlaylist={setPlaylist}/>
     <Playlist tracks={playlist} setPlaylist={setPlaylist} removeFromPlaylist={setPlaylist}/>

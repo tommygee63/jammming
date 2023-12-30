@@ -1,38 +1,38 @@
 import React from 'react';
-import trackData from '../data';
-import {useState} from 'react';
 import styles from './Serachbar.module.css';
 
 function Searchbar(props) {
 
-    const [search, setSearch] = useState('')
+    
 
     function HandleChange(e) {
-        setSearch(e.target.value)
+        props.setSearch(e.target.value)
     };
 
 
-    async function HandleSubmit(e) {
+    /*async function HandleSubmit(e) {
 
         e.preventDefault()
         props.setTracks(trackData.filter((track) => {
             return track.name === search
         }));
         setSearch('')
-    };
+    };*/
+
 
     return (
         <div className={styles.div}>
-            <form onSubmit={HandleSubmit}>
+            {/*<form onSubmit={HandleSubmit}></form>*/}
             <input 
             className={styles.input}
             type='text'
             placeholder='Enter track to search...' 
-            value={search}
-            onChange={HandleChange}/>
+            onChange={HandleChange} />
+            {/*value={search}*/}
+            
             <br/><br/>
-            <input className={styles.submit} type='submit' value='Search'/>
-            </form>
+            <input className={styles.submit} type='submit' value='Search' onClick={props.getTracks}/>
+            {/*</form>*/}
         </div>
     )
 }

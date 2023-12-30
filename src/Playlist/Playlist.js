@@ -24,7 +24,7 @@ function Playlist(props) {
 
     return (
         <div className={styles.div}>
-            <input className={styles.input} onChange={handleChange} value={playlistTitle} />
+            <input className={styles.input} onChange={handleChange} value={playlistTitle} placeholder='Name your album...'/>
 
             <Tracklist tracks={props.tracks} removeFromPlaylist={props.removeFromPlaylist}/>
 

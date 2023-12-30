@@ -11,9 +11,9 @@ function Searchbar(props) {
         setSearch(e.target.value)
     };
 
-    //console.log(trackData)
 
     function HandleSubmit(e) {
+
         e.preventDefault()
         props.setTracks(trackData.filter((track) => {
             return track.name === search
@@ -38,3 +38,4 @@ function Searchbar(props) {
 }
 
 export default Searchbar;
+

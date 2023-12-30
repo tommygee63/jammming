@@ -9,16 +9,17 @@ function App() {
 
   const [tracks, setTracks] = useState([]);
   const [playlist, setPlaylist] = useState([])
+  const [accessToken, setAccessToken] = useState('')
 
-  let accessToken = null
-
+  //saves acces token
   function saveAccessToken(token) {
-      accessToken = token;
+      setAccessToken (token);
       setTimeout(() => {
-          accessToken = null
+          setAccessToken('')
       }, 1000 * 60 * 60)
   };
   
+  //requests access token from spotify
   function handleClick() {
       const client_id = '44e26ba2f78643f6b8c5d3701b63fc86';
       const redirect_uri = 'http://localhost:3000';
@@ -33,24 +34,31 @@ function App() {
       window.location = url  
   }
 
-  let currentUrl = window.location.href 
-      console.log(currentUrl)
-      if (currentUrl.split('#').length > 1) {
-
-          let params = currentUrl.split('#')[1]
+  //reads access token from URL and resets URL
+  if (!accessToken) {
+    let currentUrl = window.location.href 
+    //console.log(currentUrl)
+    //console.log(currentUrl.split('#').length)
+    if (currentUrl.split('#').length > 1) {
       
-          let queryString = params.split('&')
-      
-          let tokenString = queryString[0].split('=')
-      
-          let token = tokenString[1]
-          console.log(token)
+        let params = currentUrl.split('#')[1]
+  
+        let queryString = params.split('&')
+    
+        let tokenString = queryString[0].split('=')
+    
+        let token = tokenString[1]
+        console.log(token)
 
-          saveAccessToken(token)
-          //accessToken = token
-      }
+        saveAccessToken(token)
+        //accessToken = token
+        setTimeout(() => {
+          window.history.pushState(accessToken, '', 'http://localhost:3000')
+        }, 1500)
+    }
+  }
 
-  console.log(accessToken)
+  //console.log(accessToken)
 
   return (
     <div>

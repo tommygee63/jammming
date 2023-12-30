@@ -12,7 +12,7 @@ function Searchbar(props) {
     };
 
 
-    function HandleSubmit(e) {
+    async function HandleSubmit(e) {
 
         e.preventDefault()
         props.setTracks(trackData.filter((track) => {

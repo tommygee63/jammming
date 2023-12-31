@@ -52,14 +52,14 @@ function App() {
         console.log(token)
 
         saveAccessToken(token)
-        //accessToken = token
+        
         setTimeout(() => {
           window.history.pushState(accessToken, '', 'http://localhost:3000')
         }, 1500)
     }
   }
 
-  //console.log(accessToken)
+  
   // gets and displays tracks
   async function getTracks() {
     try {
@@ -70,7 +70,6 @@ function App() {
       }).then((response) => {
         return response.json()
       }).then((jsonResponse) => {
-        //console.log(jsonResponse)
         setTracks([])
         jsonResponse.tracks.items.map((track) => {
           setTracks((prev) => {

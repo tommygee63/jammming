@@ -7,7 +7,7 @@ function Track(props) {
         props.addToPlaylist((prev) => [...prev, props.track])
     };*/
 
-    function handleClickToAdd(e) {
+    function handleClickToAdd() {
         props.addToPlaylist((prev) => {
             if (!prev.includes(props.track)) {
                 return [...prev, props.track]

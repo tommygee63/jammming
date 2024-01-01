@@ -24,12 +24,12 @@ function App() {
   function handleClick() {
       const client_id = '44e26ba2f78643f6b8c5d3701b63fc86';
       const redirect_uri = 'http://localhost:3000';
-      const scope = 'user-read-private user-read-email'
+      const scope = 'user-read-private user-read-email playlist-modify-public'
 
       let url = 'https://accounts.spotify.com/authorize'
       url += '?response_type=token'
       url += '&client_id=' + encodeURIComponent(client_id)
-      url += '&scpoe=' + encodeURIComponent(scope)
+      url += '&scope=' + encodeURIComponent(scope)
       url += '&redirect_uri=' + encodeURIComponent(redirect_uri) 
 
       window.location = url  
@@ -49,7 +49,7 @@ function App() {
         let tokenString = queryString[0].split('=')
     
         let token = tokenString[1]
-        console.log(token)
+        //console.log(token)
 
         saveAccessToken(token)
         
@@ -97,7 +97,7 @@ function App() {
     <Searchbar setSearch={setSearch} getTracks={getTracks}/>
     <div className='container'>
     <Searchresults tracks={tracks} addToPlaylist={setPlaylist}/>
-    <Playlist tracks={playlist} setPlaylist={setPlaylist} removeFromPlaylist={setPlaylist}/>
+    <Playlist tracks={playlist} setPlaylist={setPlaylist} removeFromPlaylist={setPlaylist} accessToken={accessToken}/>
     </div>
     </div>
   );

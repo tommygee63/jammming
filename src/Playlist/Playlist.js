@@ -12,14 +12,49 @@ function Playlist(props) {
         setPlaylistTitle(e.target.value);
     };
 
-    function handleClick(e) {
+    function handleClick() {
         props.tracks.forEach(track => {
             setUris((prev) => {
-                return [...prev, track.id]
+                return [...prev, track.uri]
             })
         })
+        if(!playlistTitle || uris.length === 0) {
+            return;
+        };
+
+        let userId = ''
+        try {
+            fetch('https://api.spotify.com/v1/me', {
+                headers: {Authorization: `Bearer ${props.accessToken}`}
+            }).then((response) => {
+                return response.json()
+            }).then((jsonResponse) => {
+                console.log(jsonResponse)
+                userId = jsonResponse.id
+                console.log(userId)
+                return fetch(`https://api.spotify.com/v1/users/${userId}/playlists`, {
+                    headers: {Authorization: `Bearer ${props.accessToken}`, 'Content-Type': 'application/json'},
+                    method: 'POST',
+                    body: JSON.stringify({name: playlistTitle})
+            })
+            }).then((response) => {
+                return response.json()
+            }).then ((jsonResponse) => {
+                let playlistId = jsonResponse.id
+                console.log(jsonResponse)
+                console.log(playlistId)
+                fetch(`https://api.spotify.com/v1/playlists/${playlistId}/tracks`, {
+                    headers: {Authorization: `Bearer ${props.accessToken}`},
+                    method: 'POST',
+                    body: JSON.stringify({uris: uris})
+                })
+            })
+        } catch(e) {
+            console.log(e)
+        }
         props.setPlaylist([])
         setPlaylistTitle('')
+        setUris([])
     };
 
     return (

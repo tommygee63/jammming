@@ -1,7 +1,7 @@
 
 import './App.css';
 import Searchbar from '../Searchbar/Searchbar';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import Searchresults from '../Searchresults/Searchresults';
 import Playlist from '../Playlist/Playlist';
 
@@ -57,10 +57,25 @@ function App() {
           window.history.pushState(accessToken, '', 'http://localhost:3000')
         }, 1500)
     }
-  }
+  } 
 
-  
-  // gets and displays tracks
+    //collects user info from Spotify and display users name
+  const [profile, setProfile] = useState('')
+
+  useEffect(() => {
+    if (accessToken) {
+      fetch('https://api.spotify.com/v1/me', {
+        headers: {Authorization: `Bearer ${accessToken}`}
+      }).then((response) => {
+        return response.json()
+      }).then((jsonResponse) => {
+        setProfile(jsonResponse)
+      })
+    }
+  }, [accessToken])
+
+
+     // gets and displays tracks
   async function getTracks() {
     try {
       await fetch(`https://api.spotify.com/v1/search?q=${search}&type=track`, {
@@ -93,6 +108,9 @@ function App() {
     <h1>-  Jammming  -</h1>
     <div className='logInButton'>
       {!accessToken && <button onClick={handleClick}>LogIn</button> || <p>Spotify connected</p>}
+    </div>
+    <div className='profile'>
+      {!profile && <p>No User Profile</p> || <p>{profile.display_name}<br/>Subscription: {profile.product}</p>}
     </div>
     <Searchbar setSearch={setSearch} getTracks={getTracks}/>
     <div className='container'>

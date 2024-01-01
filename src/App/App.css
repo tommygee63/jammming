@@ -38,6 +38,23 @@ h1 {
     background-color: white;
 }
 
+.profile {
+    background-color: rgb(26, 26, 26);
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    position: absolute;
+    top: 15px;
+    left: 50px;
+    display: flex;
+}
+.profile p {
+    padding: 0 30px;
+    font-family: Rubik;
+    justify-content: center;
+    align-items: center;
+}
+
 .container {
     display: flex;
     justify-content: space-evenly;

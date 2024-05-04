@@ -23,7 +23,7 @@ function App() {
   //requests access token from spotify
   function handleClick() {
       const client_id = '44e26ba2f78643f6b8c5d3701b63fc86';
-      const redirect_uri = 'http://localhost:3000';
+      const redirect_uri = 'https://tommyjammming.netlify.app';
       const scope = 'user-read-private user-read-email playlist-modify-public'
 
       let url = 'https://accounts.spotify.com/authorize'

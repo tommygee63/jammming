@@ -65,3 +65,26 @@ p {
     color: white;
 }
 
+@media only screen and (max-width:1120px) {
+    h1 {
+        margin-top: 80px;
+        width: 80%;
+        font-size: 2rem;
+    }
+
+    .logInButton {
+        right: 5px;
+    }
+    .logInButton p {
+        padding: 0 5px;
+    }
+
+    .profile {
+        left: 5px;
+    }
+    .profile p {
+        padding: 0 5px;
+    }
+
+}
+
